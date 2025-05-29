@@ -176,7 +176,7 @@ export default {
     async fetchAvailableSeats(flight) {
       const token = localStorage.getItem('token');
       try {
-        const response = await this.$axios.get(`https://airline-management-backend-bus7.onrender.com/reservations/occupied/${flight._id}`, {
+        const response = await this.$axios.get(`https://airline-management-backend-bus7.onrender.com/api/occupied/${flight._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const occupiedSeats = response.data;
