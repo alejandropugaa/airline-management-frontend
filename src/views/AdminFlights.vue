@@ -20,12 +20,18 @@
         </option>
       </select>
 
-      <label class="label">Tripulación</label>
-      <select v-model="form.crew" multiple class="input">
-        <option v-for="e in employees" :key="e._id" :value="e._id">
-          {{ e.user.email }} ({{ e.role }})
-        </option>
-      </select>
+          <label class="label">Tripulación</label>
+    <div class="crew-checkboxes">
+      <label v-for="e in employees" :key="e._id" class="checkbox-item">
+        <input
+          type="checkbox"
+          :value="e._id"
+          v-model="form.crew"
+        />
+        {{ e.user.email }} ({{ e.role }})
+      </label>
+    </div>
+
 
       <div class="mt-4">
         <button type="submit" class="btn">{{ editId ? 'Actualizar' : 'Crear' }}</button>
@@ -353,4 +359,22 @@ select.input {
   border-radius: 6px;
   background-color: white;
 }
+.crew-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
 </style>
