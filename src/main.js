@@ -7,5 +7,5 @@ import axios from 'axios'
 const app = createApp(App)
 app.use(router)
 app.use(store)
-app.config.globalProperties.$axios = axios // Hacer Axios accesible en todos los componentes
+app.config.globalProperties.$axios = axios 
 app.mount('#app')

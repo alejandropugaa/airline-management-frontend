@@ -178,13 +178,20 @@ export default {
       window.scrollTo(0, 0);
     },
     async deleteFlight(id) {
-      if (!confirm('¿Eliminar este vuelo?')) return;
-      const token = localStorage.getItem('token');
-      await axios.delete(`https://airline-management-backend-bus7.onrender.com/api/flights/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      this.fetchAll();
-    },
+  if (!confirm('¿Eliminar este vuelo?')) return;
+  const token = localStorage.getItem('token');
+  try {
+    await axios.delete(
+      `https://airline-management-backend-bus7.onrender.com/api/flights/${id}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    this.fetchAll();
+  } catch (error) {
+    const msg = error.response?.data?.message || error.message;
+    alert('No se pudo borrar el vuelo:\n' + msg);
+  }
+}
+,
     async updateStatus(flight) {
       try {
         const token = localStorage.getItem('token');
